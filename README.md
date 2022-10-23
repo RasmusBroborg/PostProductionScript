@@ -14,4 +14,4 @@ See [CONTRIBUTING.md](https://github.com/RasmusBroborg/DialogueList/blob/master/
 
 # License
 
-Dotnet Timecode is Copyright &copy; 2022 Rasmus Broborg and other contributors under the [MIT license](LICENSE.txt).
+DialogueList is Copyright &copy; 2022 Rasmus Broborg and other contributors under the [MIT license](LICENSE.txt).

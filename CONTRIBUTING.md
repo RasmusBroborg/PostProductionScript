@@ -1,4 +1,4 @@
-# Contributing to Dotnet Timecode
+# Contributing to DialogueList
 
 ### How to request features or bugfixes
 
@@ -10,7 +10,7 @@ It is recommended to wait for confirmation from a code collaborator regarding if
 
 - [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the repo to add a copy of the project to your Github.
 
-- Clone the repo to a local directory: `git clone https://github.com/<enter your github username here>/dotnet-timecode.git`
+- Clone the repo to a local directory: `git clone https://github.com/<enter your github username here>/DialogueList.git`
 
 - Implement your changes to the project codebase.
 
