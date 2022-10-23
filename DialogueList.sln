@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BF8389FF-4DBD-4267-8756-636E80C95419}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogueList", "src\DialogueList\DialogueList.csproj", "{618F5DEE-71A5-43F8-A9C8-699359466430}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C1701CB7-1B94-4D15-9315-256855802174}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogueList_Test", "tests\DialogueList_Test\DialogueList_Test.csproj", "{52C0B38A-3442-45C7-B305-E284CD543323}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{618F5DEE-71A5-43F8-A9C8-699359466430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{618F5DEE-71A5-43F8-A9C8-699359466430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{618F5DEE-71A5-43F8-A9C8-699359466430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{618F5DEE-71A5-43F8-A9C8-699359466430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52C0B38A-3442-45C7-B305-E284CD543323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52C0B38A-3442-45C7-B305-E284CD543323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52C0B38A-3442-45C7-B305-E284CD543323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52C0B38A-3442-45C7-B305-E284CD543323}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{618F5DEE-71A5-43F8-A9C8-699359466430} = {BF8389FF-4DBD-4267-8756-636E80C95419}
+		{52C0B38A-3442-45C7-B305-E284CD543323} = {C1701CB7-1B94-4D15-9315-256855802174}
+	EndGlobalSection
+EndGlobal
