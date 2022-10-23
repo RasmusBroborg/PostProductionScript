@@ -6,7 +6,7 @@ The library features public endpoints for creating and parsing common subtitle f
 
 # How to get started
 
-DialogueList is currently in development and is not yet ready for public consumption. If you would like to contribute to the project, please see the [contributions](#contributions) section.
+DialogueList is currently in development and is not yet ready for public consumption. If you would like to contribute to the project, please see the contributions section.
 
 # Contributions
 
