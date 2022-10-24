@@ -1,8 +1,8 @@
-﻿using DialogueList.Interfaces;
+﻿using PostProductionScript.Interfaces;
 
 using DotnetTimecode;
 
-namespace DialogueList
+namespace PostProductionScript
 {
   // TODO: Types of lines. Song, effect, action, dialogue.
 
@@ -13,8 +13,8 @@ namespace DialogueList
   public abstract class ScriptLine : IScriptLine
   {
     public int LineNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public Timecode? In { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public Timecode? Out { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Timecode? TimecodeIn { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Timecode? TimecodeOut { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string Body { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
   }
 }

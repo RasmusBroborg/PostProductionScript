@@ -1,6 +1,6 @@
 ﻿using DotnetTimecode;
 
-namespace DialogueList.Interfaces
+namespace PostProductionScript.Interfaces
 {
   /// <summary>
   /// Represents a script line.
@@ -14,11 +14,11 @@ namespace DialogueList.Interfaces
     /// <summary>
     /// Represents the script line start timecode.
     /// </summary>
-    public Timecode? In { get; set; }
+    public Timecode? TimecodeIn { get; set; }
     /// <summary>
     /// Represents the script line end timecode.
     /// </summary>
-    public Timecode? Out { get; set; }
+    public Timecode? TimecodeOut { get; set; }
     /// <summary>
     /// Represents the script line body text.
     /// </summary>

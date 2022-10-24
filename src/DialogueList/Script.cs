@@ -1,11 +1,15 @@
-﻿using DialogueList.Interfaces;
+﻿using PostProductionScript.Interfaces;
 
 using DotnetTimecode.Enums;
 
-namespace DialogueList
+// TODO: DialogueLists,
+// As Broadcast Script,
+// Continuity Lists (Combined Continuity List, Spotting List, Combined Dialogue and Spotting List (CDSL), Combined Continuity and Spotting List (CCSL))
+
+namespace PostProductionScript
 {
   /// <summary>
-  /// Represents a complete dialogue script.
+  /// Represents the most basic form of dialogue script.
   /// </summary>
 	public class Script
   {
@@ -14,7 +18,7 @@ namespace DialogueList
     /// </summary>
     public string Title { get; set; } = "";
     /// <summary>
-    /// Represents the script language.
+    /// Represents the general spoken language of the script.
     /// </summary>
     public string Language { get; set; } = "";
     /// <summary>
