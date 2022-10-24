@@ -12,9 +12,9 @@ namespace PostProductionScript
   /// </summary>
   public abstract class ScriptLine : IScriptLine
   {
-    public int LineNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public Timecode? TimecodeIn { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public Timecode? TimecodeOut { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string Body { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public int LineNumber { get; set; }
+    public Timecode? TimecodeIn { get; set; }
+    public Timecode? TimecodeOut { get; set; }
+    public string Body { get; set; } = string.Empty;
   }
 }
