@@ -16,6 +16,10 @@ namespace PostProductionScript
     public Timecode? TimecodeIn { get; set; }
     public Timecode? TimecodeOut { get; set; }
     public string Body { get; set; } = string.Empty;
+    /// <summary>
+    /// Offsets the hours of the properties TimecodeIn and TimecodeOut.
+    /// </summary>
+    /// <param name="hours">The number of hours to offset.</param>
     public void OffsetHours(int hours)
     {
       TimecodeIn?.AddHours(hours);
