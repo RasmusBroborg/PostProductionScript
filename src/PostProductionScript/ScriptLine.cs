@@ -10,11 +10,16 @@ namespace PostProductionScript
   /// <summary>
   /// Represents a script line.
   /// </summary>
-  public abstract class ScriptLine : IScriptLine
+  public class ScriptLine : IScriptLine
   {
     public int LineNumber { get; set; }
     public Timecode? TimecodeIn { get; set; }
     public Timecode? TimecodeOut { get; set; }
     public string Body { get; set; } = string.Empty;
+    public void OffsetHours(int hours)
+    {
+      TimecodeIn?.AddHours(hours);
+      TimecodeOut?.AddHours(hours);
+    }
   }
 }

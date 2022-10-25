@@ -42,8 +42,7 @@ namespace PostProductionScript
     {
       for (int i = 0; i < Lines.Count; i++)
       {
-        Lines[i]?.TimecodeIn?.AddHours(hours);
-        Lines[i]?.TimecodeOut?.AddHours(hours);
+        Lines[i]?.OffsetHours(hours);
       }
     }
 
