@@ -54,8 +54,7 @@ namespace PostProductionScript
     {
       for (int i = 0; i < Lines.Count; i++)
       {
-        Lines[i]?.TimecodeIn?.AddMinutes(minutes);
-        Lines[i]?.TimecodeOut?.AddMinutes(minutes);
+        Lines[i]?.OffsetMinutes(minutes);
       }
     }
 
