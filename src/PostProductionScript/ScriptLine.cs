@@ -25,5 +25,10 @@ namespace PostProductionScript
       TimecodeIn?.AddHours(hours);
       TimecodeOut?.AddHours(hours);
     }
+    public void OffsetMinutes(int minutes)
+    {
+      TimecodeIn?.AddHours(minutes);
+      TimecodeOut?.AddHours(minutes);
+    }
   }
 }
