@@ -78,8 +78,7 @@ namespace PostProductionScript
     {
       for (int i = 0; i < Lines.Count; i++)
       {
-        Lines[i]?.TimecodeIn?.AddFrames(frames);
-        Lines[i]?.TimecodeOut?.AddFrames(frames);
+        Lines[i]?.OffsetFrames(frames);
       }
     }
 

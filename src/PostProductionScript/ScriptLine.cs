@@ -35,5 +35,10 @@ namespace PostProductionScript
       TimecodeIn?.AddSeconds(seconds);
       TimecodeOut?.AddSeconds(seconds);
     }
+    public void OffsetFrames(int frames)
+    {
+      TimecodeIn?.AddFrames(frames);
+      TimecodeOut?.AddFrames(frames);
+    }
   }
 }
