@@ -30,5 +30,23 @@ namespace PostProductionScript
       TimecodeIn?.AddHours(minutes);
       TimecodeOut?.AddHours(minutes);
     }
+    /// <summary>
+    /// Offsets the seconds of the properties TimecodeIn and TimecodeOut.
+    /// </summary>
+    /// <param name="seconds">The number of seconds to offset.</param>
+    public void OffsetSeconds(int seconds)
+    {
+      TimecodeIn?.AddSeconds(seconds);
+      TimecodeOut?.AddSeconds(seconds);
+    }
+    /// <summary>
+    /// Offsets the frames of the properties TimecodeIn and TimecodeOut.
+    /// </summary>
+    /// <param name="frames">The number of frames to offset.</param>
+    public void OffsetFrames(int frames)
+    {
+      TimecodeIn?.AddFrames(frames);
+      TimecodeOut?.AddFrames(frames);
+    }
   }
 }
