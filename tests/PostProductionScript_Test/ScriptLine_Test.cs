@@ -61,6 +61,20 @@ namespace PostProductionScript_Test
       scriptLine.TimecodeIn.ToString().Should().Be("10:00:01:00");
       scriptLine.TimecodeOut.ToString().Should().Be("10:00:04:00");
     }
+    [Fact]
+    public void OffsetFrames_ValidInput_ExpectedBehaviour()
+    {
+      //Arrange
+      var scriptLine = new ScriptLine();
+      scriptLine.TimecodeIn = new Timecode("10:00:00:00", DotnetTimecode.Enums.Framerate.fps23_976);
+      scriptLine.TimecodeOut = new Timecode("10:00:00:03", DotnetTimecode.Enums.Framerate.fps23_976);
 
+      //Act
+      scriptLine.OffsetFrames(1);
+
+      //Assert
+      scriptLine.TimecodeIn.ToString().Should().Be("10:00:00:01");
+      scriptLine.TimecodeOut.ToString().Should().Be("10:00:00:04");
+    }
   }
 }
