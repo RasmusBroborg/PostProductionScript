@@ -27,8 +27,8 @@ namespace PostProductionScript
     }
     public void OffsetMinutes(int minutes)
     {
-      TimecodeIn?.AddHours(minutes);
-      TimecodeOut?.AddHours(minutes);
+      TimecodeIn?.AddMinutes(minutes);
+      TimecodeOut?.AddMinutes(minutes);
     }
     /// <summary>
     /// Offsets the seconds of the properties TimecodeIn and TimecodeOut.
