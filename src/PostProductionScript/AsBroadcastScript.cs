@@ -15,9 +15,24 @@ namespace PostProductionScript
 	public class Script
   {
     /// <summary>
-    /// Represents the script title.
+    /// Represents the show title.
     /// </summary>
-    public string Title { get; set; } = "";
+    public string ShowTitle { get; set; } = "";
+
+    /// <summary>
+    /// Represents the episode title.
+    /// </summary>
+    public string EpisodeTitle { get; set; } = "";
+
+    /// <summary>
+    /// Represents the season number.
+    /// </summary>
+    public int SeasonNumber { get; set; }
+
+    /// <summary>
+    /// Represents the episode number.
+    /// </summary>
+    public int EpisodeNumber { get; set; }
 
     /// <summary>
     /// Represents the general spoken language of the script.
@@ -28,6 +43,11 @@ namespace PostProductionScript
     /// Represents the general description of the script.
     /// </summary>
     public string Description { get; set; } = "";
+
+    /// <summary>
+    /// Represents the episode runtime.
+    /// </summary>
+    public Timecode? RunTime { get; set; }
 
     /// <summary>
     /// Represents the script lines.
