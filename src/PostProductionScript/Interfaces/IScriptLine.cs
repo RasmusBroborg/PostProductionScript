@@ -19,8 +19,5 @@ namespace PostProductionScript.Interfaces
     /// Represents the script line end timecode.
     /// </summary>
     public Timecode? TimecodeOut { get; set; }
-    /// <summary>
-    /// Represents the script line body text.
-    /// </summary>
   }
 }

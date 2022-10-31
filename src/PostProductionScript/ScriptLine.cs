@@ -13,11 +13,11 @@ namespace PostProductionScript
     public int LineNumber { get; set; }
     public Timecode? TimecodeIn { get; set; }
     public Timecode? TimecodeOut { get; set; }
-    public string Source { get; set; }
-    public string Dialogue { get; set; }
-    public string BurnediInSubtitles { get; set; }
-    public string OnScreenText { get; set; }
-    public string Annotations { get; set; }
+    public string Source { get; set; } = string.Empty;
+    public string Dialogue { get; set; } = string.Empty;
+    public string BurnedInSubtitles { get; set; } = string.Empty;
+    public string OnScreenText { get; set; } = string.Empty;
+    public string Annotations { get; set; } = string.Empty;
     /// <summary>
     /// Offsets the hours of the properties TimecodeIn and TimecodeOut.
     /// </summary>
