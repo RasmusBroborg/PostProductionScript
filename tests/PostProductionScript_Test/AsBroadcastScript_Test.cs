@@ -91,10 +91,10 @@ namespace PostProductionScript_Test
       script.Lines[0].Body.Should().Be("Third Line");
       script.Lines[0].LineNumber.Should().Be(1);
 
-      script.Lines[0].Body.Should().Be("First Line");
+      script.Lines[1].Body.Should().Be("First Line");
       script.Lines[1].LineNumber.Should().Be(2);
 
-      script.Lines[0].Body.Should().Be("Second Line");
+      script.Lines[2].Body.Should().Be("Second Line");
       script.Lines[2].LineNumber.Should().Be(3);
     }
 
