@@ -180,12 +180,17 @@ namespace PostProductionScript
     {
       if (lineNumber == 0)
       {
-        //Lines.Add(lineToInsert);
+        Lines.Add(lineToInsert);
+        Lines.Last().LineNumber = Lines.Count;
         return;
       }
 
       // Hantera logik för om lineNumber specificeras
-      throw new NotImplementedException();
+      Lines.Insert(lineNumber - 1, lineToInsert);
+      for(int i = 0; i < Lines.Count; i++)
+      {
+        Lines[i].LineNumber = i + 1;
+      }
     }
 
     /// <summary>
