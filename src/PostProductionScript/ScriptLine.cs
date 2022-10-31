@@ -1,27 +1,17 @@
-﻿using PostProductionScript.Interfaces;
+﻿using DotnetTimecode;
 
-using DotnetTimecode;
+using PostProductionScript.Interfaces;
 
 namespace PostProductionScript
 {
-  // TODO: Types of lines. Song, effect, action, dialogue.
-  /// <summary>
-  /// Represents a script line.
-  /// </summary>
-  public class ScriptLine : IScriptLine
+  public abstract class ScriptLine : IScriptLine
   {
     public int LineNumber { get; set; }
     public Timecode? TimecodeIn { get; set; }
     public Timecode? TimecodeOut { get; set; }
     public string Source { get; set; } = string.Empty;
-    public string Dialogue { get; set; } = string.Empty;
-    public string BurnedInSubtitles { get; set; } = string.Empty;
-    public string OnScreenText { get; set; } = string.Empty;
+    public string Body { get; set; } = string.Empty;
     public string Annotations { get; set; } = string.Empty;
-    /// <summary>
-    /// Offsets the hours of the properties TimecodeIn and TimecodeOut.
-    /// </summary>
-    /// <param name="hours">The number of hours to offset.</param>
     public void OffsetHours(int hours)
     {
       TimecodeIn?.AddHours(hours);
@@ -32,19 +22,11 @@ namespace PostProductionScript
       TimecodeIn?.AddMinutes(minutes);
       TimecodeOut?.AddMinutes(minutes);
     }
-    /// <summary>
-    /// Offsets the seconds of the properties TimecodeIn and TimecodeOut.
-    /// </summary>
-    /// <param name="seconds">The number of seconds to offset.</param>
     public void OffsetSeconds(int seconds)
     {
       TimecodeIn?.AddSeconds(seconds);
       TimecodeOut?.AddSeconds(seconds);
     }
-    /// <summary>
-    /// Offsets the frames of the properties TimecodeIn and TimecodeOut.
-    /// </summary>
-    /// <param name="frames">The number of frames to offset.</param>
     public void OffsetFrames(int frames)
     {
       TimecodeIn?.AddFrames(frames);

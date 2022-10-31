@@ -20,7 +20,8 @@ namespace PostProductionScript_Test
     public void OffsetHours_ValidInputs_ExpectedBehaviour()
     {
       // Arrange
-      var scriptLine = new ScriptLine();
+      var scriptLine = new DialogueLine();
+
       scriptLine.TimecodeIn = new Timecode("10:00:00:00", DotnetTimecode.Enums.Framerate.fps23_976);
       scriptLine.TimecodeOut = new Timecode("10:00:03:00", DotnetTimecode.Enums.Framerate.fps23_976);
 
@@ -35,7 +36,7 @@ namespace PostProductionScript_Test
     public void OffsetMinutes_ValidInput_ExpectedBehaviour()
     {
       // Arrange
-      var scriptLine = new ScriptLine();
+      var scriptLine = new DialogueLine();
       scriptLine.TimecodeIn = new Timecode("10:00:00:00", DotnetTimecode.Enums.Framerate.fps23_976);
       scriptLine.TimecodeOut = new Timecode("10:03:00:00", DotnetTimecode.Enums.Framerate.fps23_976);
 
@@ -50,7 +51,7 @@ namespace PostProductionScript_Test
     public void OffsetSeconds_ValidInput_ExpectedBehaviour()
     {
       //Arrange
-      var scriptLine = new ScriptLine();
+      var scriptLine = new DialogueLine();
       scriptLine.TimecodeIn = new Timecode("10:00:00:00", DotnetTimecode.Enums.Framerate.fps23_976);
       scriptLine.TimecodeOut = new Timecode("10:00:03:00", DotnetTimecode.Enums.Framerate.fps23_976);
 
@@ -65,7 +66,7 @@ namespace PostProductionScript_Test
     public void OffsetFrames_ValidInput_ExpectedBehaviour()
     {
       //Arrange
-      var scriptLine = new ScriptLine();
+      var scriptLine = new DialogueLine();
       scriptLine.TimecodeIn = new Timecode("10:00:00:00", DotnetTimecode.Enums.Framerate.fps23_976);
       scriptLine.TimecodeOut = new Timecode("10:00:00:03", DotnetTimecode.Enums.Framerate.fps23_976);
 

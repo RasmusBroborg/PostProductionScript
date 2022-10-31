@@ -12,7 +12,7 @@ namespace PostProductionScript
   /// <summary>
   /// Represents the most basic form of dialogue script.
   /// </summary>
-	public class Script
+	public class AsBroadcastScript
   {
     /// <summary>
     /// Represents the show title.
@@ -52,7 +52,7 @@ namespace PostProductionScript
     /// <summary>
     /// Represents the script lines.
     /// </summary>
-    public List<ScriptLine> Lines { get; } = new List<ScriptLine>();
+    public List<IScriptLine> Lines { get; } = new List<IScriptLine>();
 
     /// <summary>
     /// Offsets the hours of all script lines by a given amount.
@@ -65,7 +65,6 @@ namespace PostProductionScript
         Lines[i]?.OffsetHours(hours);
       }
     }
-
     /// <summary>
     /// Offsets the minutes of all script lines by a given amount.
     /// </summary>
@@ -171,12 +170,21 @@ namespace PostProductionScript
     }
 
     // TODO: Fix line classes. Must insert a new line and update the line numbers of all other lines.
+
     /// <summary>
-    /// Adds a line from the script.
+    /// 
     /// </summary>
-    /// <param name="lineNumber">The line number which should be removed.</param>
-    public void InsertLine(int lineNumber)
+    /// <param name="lineToInsert">The line to insert.</param>
+    /// <param name="lineNumber">The line number position.</param>
+    public void InsertLine(IScriptLine lineToInsert, int lineNumber = 0)
     {
+      if (lineNumber == 0)
+      {
+        //Lines.Add(lineToInsert);
+        return;
+      }
+
+      // Hantera logik för om lineNumber specificeras
       throw new NotImplementedException();
     }
 
