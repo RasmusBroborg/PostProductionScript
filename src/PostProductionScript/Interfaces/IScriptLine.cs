@@ -22,6 +22,5 @@ namespace PostProductionScript.Interfaces
     /// <summary>
     /// Represents the script line body text.
     /// </summary>
-    public string Body { get; set; }
   }
 }
