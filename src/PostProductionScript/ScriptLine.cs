@@ -5,8 +5,6 @@ using DotnetTimecode;
 namespace PostProductionScript
 {
   // TODO: Types of lines. Song, effect, action, dialogue.
-
-
   /// <summary>
   /// Represents a script line.
   /// </summary>
@@ -15,7 +13,11 @@ namespace PostProductionScript
     public int LineNumber { get; set; }
     public Timecode? TimecodeIn { get; set; }
     public Timecode? TimecodeOut { get; set; }
-    public string Body { get; set; } = string.Empty;
+    public string Source { get; set; } = string.Empty;
+    public string Dialogue { get; set; } = string.Empty;
+    public string BurnedInSubtitles { get; set; } = string.Empty;
+    public string OnScreenText { get; set; } = string.Empty;
+    public string Annotations { get; set; } = string.Empty;
     /// <summary>
     /// Offsets the hours of the properties TimecodeIn and TimecodeOut.
     /// </summary>
