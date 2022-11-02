@@ -10,10 +10,12 @@ using DotnetTimecode;
 
 using FluentAssertions;
 using PostProductionScript;
+using PostProductionScript.Models.LineModels;
+using PostProductionScript.Models.ScriptModels;
 
 namespace PostProductionScript_Test
 {
-  public class AsBroadcastScript_Test
+  public class Script_Test
   {
     [Fact]
     public void AddLinesToClass_ValidInputs_Success()
@@ -42,13 +44,13 @@ namespace PostProductionScript_Test
         TimecodeOut = new Timecode("10:00:05:01", DotnetTimecode.Enums.Framerate.fps24)
       };
 
-      script.Lines.Add(newDialogueLine);
-      script.Lines.Add(newOnScreenLine);
+      script.InsertLine(newDialogueLine);
+      script.InsertLine(newOnScreenLine);
 
 
       // Assert
-      script.Lines[0].Body.Should().Be("Hejsan");
-      script.Lines[1].Body.Should().Be("A NETFLIX ORIGINAL SERIES");
+      script.Lines.ToList()[0].Body.Should().Be("Hejsan");
+      script.Lines.ToList()[1].Body.Should().Be("A NETFLIX ORIGINAL SERIES");
     }
 
     [Fact]
@@ -67,9 +69,9 @@ namespace PostProductionScript_Test
       script.InsertLine(line3);
 
       // Assert
-      script.Lines[0].LineNumber.Should().Be(1);
-      script.Lines[1].LineNumber.Should().Be(2);
-      script.Lines[2].LineNumber.Should().Be(3);
+      script.Lines.ToList()[0].LineNumber.Should().Be(1);
+      script.Lines.ToList()[1].LineNumber.Should().Be(2);
+      script.Lines.ToList()[2].LineNumber.Should().Be(3);
     }
 
     [Fact]
@@ -88,14 +90,14 @@ namespace PostProductionScript_Test
       script.InsertLine(line3, 1);
 
       // Assert
-      script.Lines[0].Body.Should().Be("Third Line");
-      script.Lines[0].LineNumber.Should().Be(1);
+      script.Lines.ToList()[0].Body.Should().Be("Third Line");
+      script.Lines.ToList()[0].LineNumber.Should().Be(1);
 
-      script.Lines[1].Body.Should().Be("First Line");
-      script.Lines[1].LineNumber.Should().Be(2);
+      script.Lines.ToList()[1].Body.Should().Be("First Line");
+      script.Lines.ToList()[1].LineNumber.Should().Be(2);
 
-      script.Lines[2].Body.Should().Be("Second Line");
-      script.Lines[2].LineNumber.Should().Be(3);
+      script.Lines.ToList()[2].Body.Should().Be("Second Line");
+      script.Lines.ToList()[2].LineNumber.Should().Be(3);
     }
 
     [Fact]
@@ -116,11 +118,11 @@ namespace PostProductionScript_Test
       script.RemoveLine(1);
 
       // Assert
-      script.Lines[0].Body.Should().Be("Second Line");
-      script.Lines[0].LineNumber.Should().Be(1);
+      script.Lines.ToList()[0].Body.Should().Be("Second Line");
+      script.Lines.ToList()[0].LineNumber.Should().Be(1);
 
-      script.Lines[1].Body.Should().Be("Third Line");
-      script.Lines[1].LineNumber.Should().Be(2);
+      script.Lines.ToList()[1].Body.Should().Be("Third Line");
+      script.Lines.ToList()[1].LineNumber.Should().Be(2);
     }
   }
 }

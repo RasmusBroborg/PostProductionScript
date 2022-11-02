@@ -15,11 +15,6 @@ namespace PostProductionScript.Models.ScriptModels
 	public class AsBroadcastScript : Script
   {
     /// <summary>
-    /// Represents the show title.
-    /// </summary>
-    public string ShowTitle { get; set; } = "";
-
-    /// <summary>
     /// Represents the episode title.
     /// </summary>
     public string EpisodeTitle { get; set; } = "";
@@ -40,11 +35,6 @@ namespace PostProductionScript.Models.ScriptModels
     public string Language { get; set; } = "";
 
     /// <summary>
-    /// Represents the general description of the script.
-    /// </summary>
-    public string Description { get; set; } = "";
-
-    /// <summary>
     /// Represents the episode runtime.
     /// </summary>
     public Timecode? RunTime { get; set; }
@@ -55,9 +45,9 @@ namespace PostProductionScript.Models.ScriptModels
     /// <param name="hours">The number of hours to to offset.</param>
     public void OffsetHours(int hours)
     {
-      for (int i = 0; i < Lines.Count; i++)
+      for (int i = 0; i < _lines.Count; i++)
       {
-        Lines[i]?.OffsetHours(hours);
+        _lines[i]?.OffsetHours(hours);
       }
     }
     /// <summary>
@@ -68,7 +58,7 @@ namespace PostProductionScript.Models.ScriptModels
     {
       for (int i = 0; i < Lines.Count; i++)
       {
-        Lines[i]?.OffsetMinutes(minutes);
+        _lines[i]?.OffsetMinutes(minutes);
       }
     }
 
@@ -78,9 +68,9 @@ namespace PostProductionScript.Models.ScriptModels
     /// <param name="seconds">The number of seconds to offset.</param>
     public void OffsetSeconds(int seconds)
     {
-      for (int i = 0; i < Lines.Count; i++)
+      for (int i = 0; i < _lines.Count; i++)
       {
-        Lines[i]?.OffsetSeconds(seconds);
+        _lines[i]?.OffsetSeconds(seconds);
       }
     }
 
@@ -90,9 +80,9 @@ namespace PostProductionScript.Models.ScriptModels
     /// <param name="frames">The number of frames to add to all script lines</param>
     public void OffsetFrames(int frames)
     {
-      for (int i = 0; i < Lines.Count; i++)
+      for (int i = 0; i < _lines.Count; i++)
       {
-        Lines[i]?.OffsetFrames(frames);
+        _lines[i]?.OffsetFrames(frames);
       }
     }
 
@@ -119,10 +109,10 @@ namespace PostProductionScript.Models.ScriptModels
     /// <param name="framerate">The target framerate.</param>
     private void ReplaceAllTimecodesWithUpdatedFramerates(Framerate framerate)
     {
-      for (int i = 0; i < Lines.Count; i++)
+      for (int i = 0; i < _lines.Count; i++)
       {
-        var tcIn = Lines[i]?.TimecodeIn;
-        var tcOut = Lines[i]?.TimecodeOut;
+        var tcIn = _lines[i]?.TimecodeIn;
+        var tcOut = _lines[i]?.TimecodeOut;
 
         tcIn = tcIn is not null
           ? new Timecode(
@@ -142,11 +132,11 @@ namespace PostProductionScript.Models.ScriptModels
             framerate)
           : null;
 
-        var lineWithUpdTimecodes = Lines[i];
+        var lineWithUpdTimecodes = _lines[i];
         lineWithUpdTimecodes.TimecodeIn = tcIn;
         lineWithUpdTimecodes.TimecodeIn = tcOut;
 
-        Lines[i] = lineWithUpdTimecodes;
+        _lines[i] = lineWithUpdTimecodes;
       }
     }
 
@@ -156,49 +146,12 @@ namespace PostProductionScript.Models.ScriptModels
     /// <param name="framerate">The target framerate.</param>
     private void ConvertAllTimecodeFramerates(Framerate framerate)
     {
-      for (int i = 0; i < Lines.Count; i++)
+      for (int i = 0; i < _lines.Count; i++)
       {
-        Lines[i]?.TimecodeIn?.ConvertFramerate(framerate);
-        Lines[i]?.TimecodeOut?.ConvertFramerate(framerate);
+        _lines[i]?.TimecodeIn?.ConvertFramerate(framerate);
+        _lines[i]?.TimecodeOut?.ConvertFramerate(framerate);
       }
       return;
-    }
-
-    // TODO: Fix line classes. Must insert a new line and update the line numbers of all other lines.
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="lineToInsert">The line to insert.</param>
-    /// <param name="lineNumber">The line number position.</param>
-    public void InsertLine(IScriptLine lineToInsert, int lineNumber = 0)
-    {
-      if (lineNumber == 0)
-      {
-        Lines.Add(lineToInsert);
-        Lines.Last().LineNumber = Lines.Count;
-        return;
-      }
-
-      // Hantera logik för om lineNumber specificeras
-      Lines.Insert(lineNumber - 1, lineToInsert);
-      for (int i = 0; i < Lines.Count; i++)
-      {
-        Lines[i].LineNumber = i + 1;
-      }
-    }
-
-    /// <summary>
-    /// Removes a line from the script.
-    /// </summary>
-    /// <param name="lineNumber">The line number which should be removed.</param>
-    public void RemoveLine(int lineNumber)
-    {
-      Lines.RemoveAt(lineNumber - 1);
-      for (int i = lineNumber - 1; i < Lines.Count; i++)
-      {
-        Lines[i].LineNumber = i + 1;
-      }
     }
   }
 }
