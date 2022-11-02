@@ -25,7 +25,7 @@ namespace PostProductionScript.Models.ScriptModels
     /// </summary>
     public IReadOnlyCollection<IScriptLine> Lines => _lines.AsReadOnly();
 
-    internal List<IScriptLine> _lines { get; } = new List<IScriptLine>();
+    internal List<IScriptLine> _lines = new List<IScriptLine>();
 
     /// <summary>
     /// 
