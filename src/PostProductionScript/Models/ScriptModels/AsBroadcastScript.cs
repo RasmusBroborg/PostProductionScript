@@ -7,12 +7,12 @@ using DotnetTimecode;
 // As Broadcast Script,
 // Continuity Lists (Combined Continuity List, Spotting List, Combined Dialogue and Spotting List (CDSL), Combined Continuity and Spotting List (CCSL))
 
-namespace PostProductionScript
+namespace PostProductionScript.Models.ScriptModels
 {
   /// <summary>
   /// Represents the most basic form of dialogue script.
   /// </summary>
-	public class AsBroadcastScript
+	public class AsBroadcastScript : Script
   {
     /// <summary>
     /// Represents the show title.
@@ -48,11 +48,6 @@ namespace PostProductionScript
     /// Represents the episode runtime.
     /// </summary>
     public Timecode? RunTime { get; set; }
-
-    /// <summary>
-    /// Represents the script lines.
-    /// </summary>
-    public List<IScriptLine> Lines { get; } = new List<IScriptLine>();
 
     /// <summary>
     /// Offsets the hours of all script lines by a given amount.
@@ -187,7 +182,7 @@ namespace PostProductionScript
 
       // Hantera logik för om lineNumber specificeras
       Lines.Insert(lineNumber - 1, lineToInsert);
-      for(int i = 0; i < Lines.Count; i++)
+      for (int i = 0; i < Lines.Count; i++)
       {
         Lines[i].LineNumber = i + 1;
       }
@@ -199,8 +194,8 @@ namespace PostProductionScript
     /// <param name="lineNumber">The line number which should be removed.</param>
     public void RemoveLine(int lineNumber)
     {
-      Lines.RemoveAt(lineNumber - 1); 
-      for (int i = lineNumber -1; i < Lines.Count; i++)
+      Lines.RemoveAt(lineNumber - 1);
+      for (int i = lineNumber - 1; i < Lines.Count; i++)
       {
         Lines[i].LineNumber = i + 1;
       }

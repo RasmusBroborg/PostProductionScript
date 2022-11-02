@@ -2,7 +2,7 @@
 
 using DotnetTimecode;
 
-namespace PostProductionScript
+namespace PostProductionScript.Models.LineModels
 {
   // TODO: Types of lines. Song, effect, action, dialogue.
   /// <summary>

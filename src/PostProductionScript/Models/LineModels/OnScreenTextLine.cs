@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 using DotnetTimecode;
 
-namespace PostProductionScript
+namespace PostProductionScript.Models.LineModels
 {
   public class OnScreenTextLine : ScriptLine
   {
-    
+
   }
 }
