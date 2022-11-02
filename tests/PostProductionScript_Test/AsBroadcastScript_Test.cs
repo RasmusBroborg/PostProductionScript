@@ -98,5 +98,29 @@ namespace PostProductionScript_Test
       script.Lines[2].LineNumber.Should().Be(3);
     }
 
+    [Fact]
+    public void RemoveLine_Remove1LineUpdateOtherLines_Successful()
+    {
+      // Arrange
+      var script = new AsBroadcastScript();
+
+      // Act
+      var line1 = new DialogueLine() { Body = "First Line" };
+      var line2 = new OnScreenTextLine() { Body = "Second Line" };
+      var line3 = new OnScreenTextLine() { Body = "Third Line" };
+
+      script.InsertLine(line1);
+      script.InsertLine(line2);
+      script.InsertLine(line3);
+
+      script.RemoveLine(1);
+
+      // Assert
+      script.Lines[0].Body.Should().Be("Second Line");
+      script.Lines[0].LineNumber.Should().Be(1);
+
+      script.Lines[1].Body.Should().Be("Third Line");
+      script.Lines[1].LineNumber.Should().Be(2);
+    }
   }
 }

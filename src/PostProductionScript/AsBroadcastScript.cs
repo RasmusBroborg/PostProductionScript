@@ -199,7 +199,11 @@ namespace PostProductionScript
     /// <param name="lineNumber">The line number which should be removed.</param>
     public void RemoveLine(int lineNumber)
     {
-      throw new NotImplementedException();
+      Lines.RemoveAt(lineNumber - 1); 
+      for (int i = lineNumber -1; i < Lines.Count; i++)
+      {
+        Lines[i].LineNumber = i + 1;
+      }
     }
   }
 }
