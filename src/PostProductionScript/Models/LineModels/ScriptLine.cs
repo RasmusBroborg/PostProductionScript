@@ -2,7 +2,7 @@
 
 using PostProductionScript.Interfaces;
 
-namespace PostProductionScript
+namespace PostProductionScript.Models.LineModels
 {
   public abstract class ScriptLine : IScriptLine
   {

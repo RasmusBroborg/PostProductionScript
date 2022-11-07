@@ -9,6 +9,7 @@ using DotnetTimecode;
 using FluentAssertions;
 
 using PostProductionScript;
+using PostProductionScript.Models.LineModels;
 
 using Xunit;
 
