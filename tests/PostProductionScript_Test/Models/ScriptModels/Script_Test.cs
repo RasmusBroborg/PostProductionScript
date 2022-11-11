@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Linq;
 using Xunit;
 
 using DotnetTimecode;
 
 using FluentAssertions;
-using PostProductionScript;
 using PostProductionScript.Models.LineModels;
 using PostProductionScript.Models.ScriptModels;
 
-namespace PostProductionScript_Test
+namespace PostProductionScript_Test.Models.ScriptModels
 {
   public class Script_Test
   {
@@ -81,8 +75,8 @@ namespace PostProductionScript_Test
       var script = new AsBroadcastScript();
 
       // Act
-      var line1 = new DialogueLine() { Body = "First Line"};
-      var line2 = new OnScreenTextLine(){ Body = "Second Line" };
+      var line1 = new DialogueLine() { Body = "First Line" };
+      var line2 = new OnScreenTextLine() { Body = "Second Line" };
       var line3 = new OnScreenTextLine() { Body = "Third Line" };
 
       script.InsertLine(line1);

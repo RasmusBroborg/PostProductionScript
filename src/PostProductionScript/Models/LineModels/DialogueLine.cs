@@ -1,8 +1,4 @@
-﻿using PostProductionScript.Interfaces;
-
-using DotnetTimecode;
-
-namespace PostProductionScript.Models.LineModels
+﻿namespace PostProductionScript.Models.LineModels
 {
   // TODO: Types of lines. Song, effect, action, dialogue.
   /// <summary>

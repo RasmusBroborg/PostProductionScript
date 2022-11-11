@@ -1,6 +1,4 @@
-﻿using PostProductionScript.Interfaces;
-
-using DotnetTimecode.Enums;
+﻿using DotnetTimecode.Enums;
 using DotnetTimecode;
 
 // TODO: DialogueLists,
@@ -22,12 +20,12 @@ namespace PostProductionScript.Models.ScriptModels
     /// <summary>
     /// Represents the season number.
     /// </summary>
-    public int SeasonNumber { get; set; }
+    public int? SeasonNumber { get; set; }
 
     /// <summary>
     /// Represents the episode number.
     /// </summary>
-    public int EpisodeNumber { get; set; }
+    public int? EpisodeNumber { get; set; }
 
     /// <summary>
     /// Represents the general spoken language of the script.
