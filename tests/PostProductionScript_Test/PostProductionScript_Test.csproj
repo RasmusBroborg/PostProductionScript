@@ -25,8 +25,4 @@
     <ProjectReference Include="..\..\src\PostProductionScript\PostProductionScript.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Managers\" />
-  </ItemGroup>
-
 </Project>
