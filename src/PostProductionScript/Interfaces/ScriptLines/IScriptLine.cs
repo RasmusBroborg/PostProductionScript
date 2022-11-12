@@ -7,11 +7,29 @@ namespace PostProductionScript.Interfaces.ScriptLines
   /// </summary>
   public interface IScriptLine
   {
+    /// <summary>
+    /// Represents the script line number.
+    /// </summary>
     public int LineNumber { get; set; }
+    /// <summary>
+    /// Represents the script start timecode.
+    /// </summary>
     public Timecode? TimecodeIn { get; set; }
+    /// <summary>
+    /// Represents the script end timecode.
+    /// </summary>
     public Timecode? TimecodeOut { get; set; }
+    /// <summary>
+    /// Represents the script line source, ex the character.
+    /// </summary>
     public string Source { get; set; }
+    /// <summary>
+    /// Represents the script line body text.
+    /// </summary>
     public string Body { get; set; }
+    /// <summary>
+    /// Represents the script line annotation text.
+    /// </summary>
     public string Annotations { get; set; }
     /// <summary>
     /// Offsets the hours of the properties TimecodeIn and TimecodeOut.

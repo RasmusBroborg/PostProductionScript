@@ -15,7 +15,15 @@ namespace PostProductionScript.Managers
 {
   public static class SubtitleManager
   {
-    internal static string srtContentRegexPattern = 
+    /// <summary>
+    /// Regex of a .srt dialogue line.<br/>
+    /// <br/>
+    /// Example dialogue line:<br/>
+    /// 1<br/>
+    /// 01:01:01:500 --> 01:01:05:500<br/>
+    /// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    /// </summary>
+    internal readonly static string srtContentRegexPattern = 
       @"(( *)(?<Linenumber>[0-9])+(\r\n|\r|\n)( *){0,1}(?<TimecodeIn>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3}) *-->( ){*}{0,1}(?<TimecodeOut>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3})(\r\n|\r|\n)(?<Body>[^\r\n]+((\r|\n|\r\n)[^\r\n]+)*))";
 
     /// <summary>
@@ -27,9 +35,7 @@ namespace PostProductionScript.Managers
     public static TimecodeScript ConvertSrtToTimecodeScript(string srtFileContent, Framerate framerate)
     {
       string[] srtSubstrings = ExtractSrtSubstrings(srtFileContent);
-
       TimecodeScript script = new TimecodeScript();
-
       foreach (var srtSubstring in srtSubstrings)
       {
         ExtractSrtValues(srtSubstring, framerate, 
@@ -48,14 +54,13 @@ namespace PostProductionScript.Managers
 
         script.InsertLine(dialogueLine);
       }
-
       return script;
     }
 
     /// <summary>
     /// Extracts substrings of an entire .srt file. Each substring consists of a srt dialogue line,<br/>
-    /// with a line number, a start timecode, an end timecode, and a body of text.<br/><br/>
-    /// 
+    /// with a line number, a start timecode, an end timecode, and a body of text.<br/>
+    /// <br/>
     /// Example substring:<br/>
     /// 1<br/>
     /// 01:01:01:500 --> 01:01:05:500<br/>
