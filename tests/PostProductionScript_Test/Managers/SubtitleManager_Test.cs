@@ -57,8 +57,8 @@ natoque penatibus et magnis dis.
         result.Lines.ElementAt(i).LineNumber.Should().Be(i+1);
         result.Lines.ElementAt(i).TimecodeIn!.Second.Should().Be(i);
         result.Lines.ElementAt(i).TimecodeIn!.Frame.Should().Be(0);
-        result.Lines.ElementAt(i).TimecodeOut!.Second.Should().Be(i+1);
-        result.Lines.ElementAt(i).TimecodeOut!.Frame.Should().Be(12); // 24fps*0.500
+        result.Lines.ElementAt(i).TimecodeOut!.Second.Should().Be(i+1); // Every out timecode is increased by 1s and 500ms
+        result.Lines.ElementAt(i).TimecodeOut!.Frame.Should().Be(12); // 24fps*0.500s = 12 frames
       }
     }
   }
