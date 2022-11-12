@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using DotnetTimecode;
-
+﻿using DotnetTimecode;
 using FluentAssertions;
-
-using PostProductionScript;
 using PostProductionScript.Models.LineModels;
 
 using Xunit;
 
-namespace PostProductionScript_Test
+namespace PostProductionScript_Test.Models.LineModels
 {
-	public class ScriptLine_Test
-	{
+  public class ScriptLine_Test
+  {
     [Fact]
     public void OffsetHours_ValidInputs_ExpectedBehaviour()
     {
