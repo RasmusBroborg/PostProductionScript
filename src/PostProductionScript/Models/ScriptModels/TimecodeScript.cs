@@ -8,39 +8,10 @@ using DotnetTimecode;
 namespace PostProductionScript.Models.ScriptModels
 {
   /// <summary>
-  /// Represents the most basic form of dialogue script.
+  /// Represents the most basic form of timecoded script.
   /// </summary>
-	public class AsBroadcastScript : Script
+	public class TimecodeScript : Script, ITimecodeScript
   {
-    /// <summary>
-    /// Represents the episode title.
-    /// </summary>
-    public string EpisodeTitle { get; set; } = "";
-
-    /// <summary>
-    /// Represents the season number.
-    /// </summary>
-    public int? SeasonNumber { get; set; }
-
-    /// <summary>
-    /// Represents the episode number.
-    /// </summary>
-    public int? EpisodeNumber { get; set; }
-
-    /// <summary>
-    /// Represents the general spoken language of the script.
-    /// </summary>
-    public string Language { get; set; } = "";
-
-    /// <summary>
-    /// Represents the episode runtime.
-    /// </summary>
-    public Timecode? RunTime { get; set; }
-
-    /// <summary>
-    /// Offsets the hours of all script lines by a given amount.
-    /// </summary>
-    /// <param name="hours">The number of hours to to offset.</param>
     public void OffsetHours(int hours)
     {
       for (int i = 0; i < _lines.Count; i++)
@@ -48,10 +19,7 @@ namespace PostProductionScript.Models.ScriptModels
         _lines[i]?.OffsetHours(hours);
       }
     }
-    /// <summary>
-    /// Offsets the minutes of all script lines by a given amount.
-    /// </summary>
-    /// <param name="minutes">The number of minutes to offset.</param>
+    
     public void OffsetMinutes(int minutes)
     {
       for (int i = 0; i < Lines.Count; i++)
@@ -60,10 +28,6 @@ namespace PostProductionScript.Models.ScriptModels
       }
     }
 
-    /// <summary>
-    /// Offsets the seconds of all script lines by a given amount.
-    /// </summary>
-    /// <param name="seconds">The number of seconds to offset.</param>
     public void OffsetSeconds(int seconds)
     {
       for (int i = 0; i < _lines.Count; i++)
@@ -72,10 +36,6 @@ namespace PostProductionScript.Models.ScriptModels
       }
     }
 
-    /// <summary>
-    /// Offsets the frames of all script lines by a given amount.
-    /// </summary>
-    /// <param name="frames">The number of frames to add to all script lines</param>
     public void OffsetFrames(int frames)
     {
       for (int i = 0; i < _lines.Count; i++)
@@ -84,12 +44,6 @@ namespace PostProductionScript.Models.ScriptModels
       }
     }
 
-    /// <summary>
-    /// Changes the scripts framerate.
-    /// </summary>
-    /// <param name="framerate">The script target framerate.</param>
-    /// <param name="convertExistingTimecodes">Determines if all existing timecodes should be converted to the target framerate. 
-    /// <br/> True set as default behaviour.</param>
     public void ChangeScriptFramerate(Framerate framerate, bool convertExistingTimecodes = true)
     {
       if (convertExistingTimecodes)

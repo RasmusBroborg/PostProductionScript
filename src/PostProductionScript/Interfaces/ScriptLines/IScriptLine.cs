@@ -1,6 +1,6 @@
 ﻿using DotnetTimecode;
 
-namespace PostProductionScript.Interfaces
+namespace PostProductionScript.Interfaces.ScriptLines
 {
   /// <summary>
   /// Represents a script line.

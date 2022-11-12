@@ -18,19 +18,19 @@ namespace PostProductionScript.Managers
     internal static string srtContentRegexPattern = @"(( *)(?<Linenumber>[0-9])+(\r\n|\r|\n)( *){0,1}(?<TimecodeIn>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3}) *-->( ){*}{0,1}(?<TimecodeOut>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3})(\r\n|\r|\n)(?<Body>[^\r\n]+((\r|\n|\r\n)[^\r\n]+)*))";
 
     /// <summary>
-    /// Constructs an AsBroadcastScript from the contents of a .srt-file.
+    /// Constructs a TimecodeScript from the contents of a .srt-file.
     /// </summary>
     /// <param name="srtFileContent">The string content of a .srt file.</param>
     /// <param name="framerate">The target timecode framerate.</param>
     /// <returns>A script object with all of the srt timecode values converted into script lines.</returns>
-    public static AsBroadcastScript ConvertSrtToAsBroadcastScript(string srtFileContent, Framerate framerate)
+    public static TimecodeScript ConvertSrtToTimecodeScript(string srtFileContent, Framerate framerate)
     {
       // Split into smaller string chunks
 
       string[] srtSubstrings = Regex.Matches(srtFileContent, srtContentRegexPattern)
         .Cast<Match>().Select(m => m.Value).ToArray();
 
-      AsBroadcastScript script = new AsBroadcastScript();
+      TimecodeScript script = new TimecodeScript();
 
       foreach (var srtSubstring in srtSubstrings)
       {

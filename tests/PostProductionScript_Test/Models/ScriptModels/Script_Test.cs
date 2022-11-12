@@ -15,7 +15,7 @@ namespace PostProductionScript_Test.Models.ScriptModels
     public void AddLinesToClass_ValidInputs_Success()
     {
       // Arrange
-      var script = new AsBroadcastScript();
+      var script = new TimecodeScript();
 
       // Act
       var newDialogueLine = new DialogueLine()
@@ -51,7 +51,7 @@ namespace PostProductionScript_Test.Models.ScriptModels
     public void InsertLine_Insert3LinesUpdateLineNumbers_Successful()
     {
       // Arrange
-      var script = new AsBroadcastScript();
+      var script = new TimecodeScript();
 
       // Act
       var line1 = new DialogueLine();
@@ -72,7 +72,7 @@ namespace PostProductionScript_Test.Models.ScriptModels
     public void InsertLine_Insert1LinesUpdateOtherLines_Successful()
     {
       // Arrange
-      var script = new AsBroadcastScript();
+      var script = new TimecodeScript();
 
       // Act
       var line1 = new DialogueLine() { Body = "First Line" };
@@ -98,7 +98,7 @@ namespace PostProductionScript_Test.Models.ScriptModels
     public void RemoveLine_Remove1LineUpdateOtherLines_Successful()
     {
       // Arrange
-      var script = new AsBroadcastScript();
+      var script = new TimecodeScript();
 
       // Act
       var line1 = new DialogueLine() { Body = "First Line" };

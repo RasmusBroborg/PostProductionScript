@@ -1,6 +1,6 @@
 ﻿using DotnetTimecode;
 
-using PostProductionScript.Interfaces;
+using PostProductionScript.Interfaces.ScriptLines;
 
 namespace PostProductionScript.Models.LineModels
 {

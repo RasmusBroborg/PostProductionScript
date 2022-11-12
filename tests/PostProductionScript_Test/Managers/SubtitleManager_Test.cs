@@ -10,7 +10,7 @@ namespace PostProductionScript_Test.Managers
   public class SubtitleManager_Test
   {
     [Fact]
-    public void ConvertSrtToAsBroadcastScript_ValidInputs_Successful()
+    public void ConvertSrtToTimecodeScript_ValidInputs_Successful()
     {
       // Arrange
       var framerate = Framerate.fps24;
@@ -47,7 +47,7 @@ natoque penatibus et magnis dis.
 ";
 
       // Act
-      var result = SubtitleManager.ConvertSrtToAsBroadcastScript(validSrt, framerate);
+      var result = SubtitleManager.ConvertSrtToTimecodeScript(validSrt, framerate);
 
       // Assert
       result.Lines.Count().Should().Be(6);
