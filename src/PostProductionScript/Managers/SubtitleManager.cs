@@ -15,7 +15,8 @@ namespace PostProductionScript.Managers
 {
   public static class SubtitleManager
   {
-    internal static string srtContentRegexPattern = @"(( *)(?<Linenumber>[0-9])+(\r\n|\r|\n)( *){0,1}(?<TimecodeIn>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3}) *-->( ){*}{0,1}(?<TimecodeOut>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3})(\r\n|\r|\n)(?<Body>[^\r\n]+((\r|\n|\r\n)[^\r\n]+)*))";
+    internal static string srtContentRegexPattern = 
+      @"(( *)(?<Linenumber>[0-9])+(\r\n|\r|\n)( *){0,1}(?<TimecodeIn>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3}) *-->( ){*}{0,1}(?<TimecodeOut>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3})(\r\n|\r|\n)(?<Body>[^\r\n]+((\r|\n|\r\n)[^\r\n]+)*))";
 
     /// <summary>
     /// Constructs a TimecodeScript from the contents of a .srt-file.
@@ -25,24 +26,17 @@ namespace PostProductionScript.Managers
     /// <returns>A script object with all of the srt timecode values converted into script lines.</returns>
     public static TimecodeScript ConvertSrtToTimecodeScript(string srtFileContent, Framerate framerate)
     {
-      // Split into smaller string chunks
-
-      string[] srtSubstrings = Regex.Matches(srtFileContent, srtContentRegexPattern)
-        .Cast<Match>().Select(m => m.Value).ToArray();
+      string[] srtSubstrings = ExtractSrtSubstrings(srtFileContent);
 
       TimecodeScript script = new TimecodeScript();
 
       foreach (var srtSubstring in srtSubstrings)
       {
-        Regex pattern = new Regex(srtContentRegexPattern);
-        Match match = pattern.Match(srtSubstring);
-
-        int lineNumber = int.Parse(match.Groups["Linenumber"].Value);
-        string timecodeInStr = Timecode.ConvertSrtTimecodeToTimecode(match.Groups["TimecodeIn"].Value, framerate);
-        string timecodeOutStr = Timecode.ConvertSrtTimecodeToTimecode(match.Groups["TimecodeOut"].Value, framerate);
-        Timecode timecodeIn = new Timecode(timecodeInStr, framerate);
-        Timecode timecodeOut = new Timecode(timecodeOutStr, framerate);
-        string body = match.Groups["Body"].Value;
+        ExtractSrtValues(srtSubstring, framerate, 
+          out int lineNumber, 
+          out Timecode timecodeIn, 
+          out Timecode timecodeOut,
+          out string body);
 
         DialogueLine dialogueLine = new DialogueLine
         {
@@ -56,6 +50,51 @@ namespace PostProductionScript.Managers
       }
 
       return script;
+    }
+
+    /// <summary>
+    /// Extracts substrings of an entire .srt file. Each substring consists of a srt dialogue line,<br/>
+    /// with a line number, a start timecode, an end timecode, and a body of text.<br/><br/>
+    /// 
+    /// Example substring:<br/>
+    /// 1<br/>
+    /// 01:01:01:500 --> 01:01:05:500<br/>
+    /// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    /// </summary>
+    /// <param name="srtFileContent">The content of an entire .srt file.</param>
+    /// <returns>An array of substrings, for each line of the .srt file.</returns>
+    private static string[] ExtractSrtSubstrings(string srtFileContent)
+    {
+      return Regex.Matches(srtFileContent, srtContentRegexPattern)
+        .Cast<Match>().Select(m => m.Value).ToArray();
+    }
+
+    /// <summary>
+    /// Extracts line variables from a .srt substring which consists of a srt dialogue line,<br/>
+    /// with a line number, a start timecode, an end timecode, and a body of text.<br/><br/>
+    /// Example substring:<br/>
+    /// 1<br/>
+    /// 01:01:01:500 --> 01:01:05:500<br/>
+    /// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    /// </summary>
+    /// <param name="srtSubstring">The .srt substring to extract variables from.</param>
+    /// <param name="framerate">The target framerate.</param>
+    /// <param name="lineNumber">A line number.</param>
+    /// <param name="timecodeIn">A timecode representing the line start time.</param>
+    /// <param name="timecodeOut">A timecode representing the line end time.</param>
+    /// <param name="body">The line body.</param>
+    private static void ExtractSrtValues(
+      string srtSubstring, Framerate framerate, 
+      out int lineNumber, out Timecode timecodeIn, out Timecode timecodeOut, out string body)
+    {
+      Regex pattern = new Regex(srtContentRegexPattern);
+      Match match = pattern.Match(srtSubstring);
+      string timecodeInStr = Timecode.ConvertSrtTimecodeToTimecode(match.Groups["TimecodeIn"].Value, framerate);
+      string timecodeOutStr = Timecode.ConvertSrtTimecodeToTimecode(match.Groups["TimecodeOut"].Value, framerate);
+      timecodeIn = new Timecode(timecodeInStr, framerate);
+      timecodeOut = new Timecode(timecodeOutStr, framerate);
+      lineNumber = int.Parse(match.Groups["Linenumber"].Value);
+      body = match.Groups["Body"].Value;
     }
   }
 }
