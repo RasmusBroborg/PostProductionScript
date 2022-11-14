@@ -41,7 +41,6 @@ namespace PostProductionScript_Test.Models.ScriptModels
       script.InsertLine(newDialogueLine);
       script.InsertLine(newOnScreenLine);
 
-
       // Assert
       script.Lines.ToList()[0].Body.Should().Be("Hejsan");
       script.Lines.ToList()[1].Body.Should().Be("A NETFLIX ORIGINAL SERIES");

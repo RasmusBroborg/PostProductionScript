@@ -23,7 +23,7 @@ namespace PostProductionScript.Managers
     /// 01:01:01:500 --> 01:01:05:500<br/>
     /// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     /// </summary>
-    internal readonly static string srtContentRegexPattern = 
+    internal static readonly string srtContentRegexPattern =
       @"(( *)(?<Linenumber>[0-9])+(\r\n|\r|\n)( *){0,1}(?<TimecodeIn>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3}) *-->( ){*}{0,1}(?<TimecodeOut>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3})(\r\n|\r|\n)(?<Body>[^\r\n]+((\r|\n|\r\n)[^\r\n]+)*))";
 
     /// <summary>
@@ -38,9 +38,9 @@ namespace PostProductionScript.Managers
       TimecodeScript script = new TimecodeScript();
       foreach (var srtSubstring in srtSubstrings)
       {
-        ExtractSrtValues(srtSubstring, framerate, 
-          out int lineNumber, 
-          out Timecode timecodeIn, 
+        ExtractSrtValues(srtSubstring, framerate,
+          out int lineNumber,
+          out Timecode timecodeIn,
           out Timecode timecodeOut,
           out string body);
 
@@ -89,7 +89,7 @@ namespace PostProductionScript.Managers
     /// <param name="timecodeOut">A timecode representing the line end time.</param>
     /// <param name="body">The line body.</param>
     private static void ExtractSrtValues(
-      string srtSubstring, Framerate framerate, 
+      string srtSubstring, Framerate framerate,
       out int lineNumber, out Timecode timecodeIn, out Timecode timecodeOut, out string body)
     {
       Regex pattern = new Regex(srtContentRegexPattern);

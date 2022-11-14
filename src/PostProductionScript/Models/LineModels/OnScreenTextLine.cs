@@ -10,6 +10,5 @@ namespace PostProductionScript.Models.LineModels
 {
   public class OnScreenTextLine : ScriptLine
   {
-
   }
 }

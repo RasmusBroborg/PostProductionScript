@@ -12,21 +12,25 @@ namespace PostProductionScript.Models.LineModels
     public string Source { get; set; } = string.Empty;
     public string Body { get; set; } = string.Empty;
     public string Annotations { get; set; } = string.Empty;
+
     public void OffsetHours(int hours)
     {
       TimecodeIn?.AddHours(hours);
       TimecodeOut?.AddHours(hours);
     }
+
     public void OffsetMinutes(int minutes)
     {
       TimecodeIn?.AddMinutes(minutes);
       TimecodeOut?.AddMinutes(minutes);
     }
+
     public void OffsetSeconds(int seconds)
     {
       TimecodeIn?.AddSeconds(seconds);
       TimecodeOut?.AddSeconds(seconds);
     }
+
     public void OffsetFrames(int frames)
     {
       TimecodeIn?.AddFrames(frames);
