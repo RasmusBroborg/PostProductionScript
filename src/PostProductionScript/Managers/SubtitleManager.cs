@@ -109,7 +109,7 @@ namespace PostProductionScript.Managers
         result += script.Lines.ElementAt(i).LineNumber + "/n" +
            script.Lines.ElementAt(i).TimecodeIn + " -> " +
            script.Lines.ElementAt(i).TimecodeOut + "/n" +
-           script.Lines.ElementAt(i).Body;
+           script.Lines.ElementAt(i).Body + "/n";
       }
       return result;
     }
