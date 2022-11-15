@@ -106,10 +106,10 @@ namespace PostProductionScript.Managers
       string result = "";
       for (int i = 0; i < script.Lines.Count; i++)
       {
-        result += script.Lines.ElementAt(i).LineNumber + "/n" +
+        result += script.Lines.ElementAt(i).LineNumber + "\n " +
            script.Lines.ElementAt(i).TimecodeIn + " -> " +
-           script.Lines.ElementAt(i).TimecodeOut + "/n" +
-           script.Lines.ElementAt(i).Body + "/n";
+           script.Lines.ElementAt(i).TimecodeOut + "\n " +
+           script.Lines.ElementAt(i).Body + "\n ";
       }
       return result;
     }
