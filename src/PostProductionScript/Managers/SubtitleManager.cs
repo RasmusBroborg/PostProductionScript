@@ -16,14 +16,14 @@ namespace PostProductionScript.Managers
   public static class SubtitleManager
   {
     /// <summary>
-    /// Regex of a .srt dialogue line.<br/>
+    /// Regex of a .srt dialogue line, including line number, timecodes and body of text.<br/>
     /// <br/>
     /// Example dialogue line:<br/>
     /// 1<br/>
     /// 01:01:01:500 --> 01:01:05:500<br/>
     /// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     /// </summary>
-    internal readonly static string srtContentRegexPattern =
+    internal static readonly string srtContentRegexPattern =
       @"(( *)(?<Linenumber>[0-9])+(\r\n|\r|\n)( *){0,1}(?<TimecodeIn>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3}) *-->( ){*}{0,1}(?<TimecodeOut>(([0-9]){2}:){2}(([0-9]){2})(,)([0-9]){3})(\r\n|\r|\n)(?<Body>[^\r\n]+((\r|\n|\r\n)[^\r\n]+)*))";
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace PostProductionScript.Managers
     /// <param name="srtFileContent">The string content of a .srt file.</param>
     /// <param name="framerate">The target timecode framerate.</param>
     /// <returns>A script object with all of the srt timecode values converted into script lines.</returns>
-    public static TimecodeScript ConvertSrtToTimecodeScript(string srtFileContent, Framerate framerate)
+    public static TimecodeScript ConvertSrtTextToTimecodeScript(string srtFileContent, Framerate framerate)
     {
       string[] srtSubstrings = ExtractSrtSubstrings(srtFileContent);
       TimecodeScript script = new TimecodeScript();
@@ -101,17 +101,25 @@ namespace PostProductionScript.Managers
       lineNumber = int.Parse(match.Groups["Linenumber"].Value);
       body = match.Groups["Body"].Value;
     }
-    private static string GenerateSrtText(TimecodeScript script)
+
+    /// <summary>
+    /// Converts a filestream of a .srt file to script object.
+    /// </summary>
+    /// <param name="srtStream">The stream of a .srt file.</param>
+    /// <param name="framerate">The target scripts framerate.</param>
+    /// <returns>A script object with all of the srt timecode values converted into script lines.</returns>
+    public static TimecodeScript ConvertSrtStreamToTimecodeScript(Stream srtStream, Framerate framerate)
     {
-      string result = "";
-      for (int i = 0; i < script.Lines.Count; i++)
+      StreamReader reader = new StreamReader(srtStream);
+      string text = reader.ReadToEnd();
+
+      if (!Regex.IsMatch(text, srtContentRegexPattern))
       {
-        result += script.Lines.ElementAt(i).LineNumber + "\n " +
-           script.Lines.ElementAt(i).TimecodeIn + " -> " +
-           script.Lines.ElementAt(i).TimecodeOut + "\n " +
-           script.Lines.ElementAt(i).Body + "\n ";
+        throw new ArgumentException("Input stream does not contain .srt content.", nameof(srtStream));
       }
-      return result;
+
+      var script = ConvertSrtTextToTimecodeScript(text, framerate);
+      return script;
     }
   }
 }
