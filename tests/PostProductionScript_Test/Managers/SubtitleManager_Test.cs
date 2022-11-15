@@ -55,7 +55,6 @@ natoque penatibus et magnis dis.
 
       // Assert
       result.Lines.Count().Should().Be(6);
-      Console.WriteLine(result);
       for (int i = 0; i < result.Lines.Count(); i++)
       {
         result.Lines.ElementAt(i).LineNumber.Should().Be(i + 1);
