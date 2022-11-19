@@ -10,6 +10,11 @@ namespace PostProductionScript.Models.LineModels
 {
   public class OnScreenTextLine : ScriptLine
   {
-
+    public OnScreenTextLine(Timecode? timecodeIn, Timecode? timecodeOut, string body)
+    {
+      TimecodeIn = timecodeIn;
+      TimecodeOut = timecodeOut;
+      Body = body;
+    }
   }
 }

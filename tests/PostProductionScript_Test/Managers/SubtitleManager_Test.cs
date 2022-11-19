@@ -1,11 +1,15 @@
 ﻿using System.Linq;
 using PostProductionScript.Managers;
 using DotnetTimecode.Enums;
+using PostProductionScript.Models.ScriptModels;
 
 using Xunit;
 using FluentAssertions;
 using System.Text;
 using System.IO;
+using PostProductionScript.Interfaces.ScriptLines;
+using PostProductionScript.Models.LineModels;
+using DotnetTimecode;
 
 namespace PostProductionScript_Test.Managers
 {
@@ -114,6 +118,32 @@ Sit amet mattis vulputate enim.");
 @"Fermentum dui faucibus in ornare quam
 viverra. Elit eget gravida cum sociis
 natoque penatibus et magnis dis.");
+    }
+    [Fact]
+    public void GenerateSrtText_ValidInput_Successful()
+    {
+      //Arrange
+      TimecodeScript script = new TimecodeScript();
+
+      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 0, 0, Framerate.fps24),
+      new Timecode(0, 0, 1, 5, Framerate.fps24), "Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit."), 1);
+      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 1, 0, Framerate.fps24),
+new Timecode(0, 0, 2, 5, Framerate.fps24), "Sed do eiusmod tempor incididunt\nut labore et dolore magna aliqua."), 2);
+      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 2, 0, Framerate.fps24),
+new Timecode(0, 0, 3, 5, Framerate.fps24), "Justo donec enim diam vulputate."), 3);
+      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 3, 0, Framerate.fps24),
+new Timecode(0, 0, 4, 5, Framerate.fps24), "Id cursus metus aliquam eleifend\nmi in nulla."), 4);
+      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 4, 0, Framerate.fps24),
+new Timecode(0, 0, 5, 5, Framerate.fps24), "Ornare aenean euismod elementum nisi.\nSit amet mattis vulputate enim."), 5);
+      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 5, 0, Framerate.fps24),
+new Timecode(0, 0, 6, 5, Framerate.fps24), "Fermentum dui faucibus in ornare quam\nviverra. Elit eget gravida cum sociis" +
+"\nnatoque penatibus et magnis dis."), 6);
+
+      //Act
+      string result = SubtitleManager.GenerateSrtText(script);
+
+      //Assert
+      result.Should().Be(EXAMPLE_SRT_STRING);
     }
   }
 }

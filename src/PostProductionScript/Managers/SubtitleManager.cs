@@ -121,15 +121,15 @@ namespace PostProductionScript.Managers
       var script = ConvertSrtTextToTimecodeScript(text, framerate);
       return script;
     }
-    private static string GenerateSrtText(TimecodeScript script)
+    public static string GenerateSrtText(TimecodeScript script)
     {
       string result = "";
       for (int i = 0; i < script.Lines.Count; i++)
       {
-        result += script.Lines.ElementAt(i).LineNumber + "\n " +
-           script.Lines.ElementAt(i).TimecodeIn + " -> " +
-           script.Lines.ElementAt(i).TimecodeOut + "\n " +
-           script.Lines.ElementAt(i).Body + "\n ";
+        result += script.Lines.ElementAt(i).LineNumber + "\n" +
+           script.Lines.ElementAt(i).TimecodeIn?.ToString() + " --> " +
+           script.Lines.ElementAt(i).TimecodeOut?.ToString() + "\n" +
+           script.Lines.ElementAt(i).Body + "\n" + "\n";
       }
       return result;
     }
