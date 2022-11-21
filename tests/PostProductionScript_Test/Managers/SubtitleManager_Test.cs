@@ -15,17 +15,6 @@ namespace PostProductionScript_Test.Managers
 {
   public class SubtitleManager_Test
   {
-    public static readonly string EXAMPLE_SRT_STRING2 = @$"
-1
-00:00:00,000 --> 00:00:01,500
-Lorem ipsum dolor sit amet,
-consectetur adipiscing elit.
-
-2
-00:00:01,000 --> 00:00:02,500
-Sed do eiusmod tempor incididunt
-ut labore et dolore magna aliqua.
-";
     public static readonly string EXAMPLE_SRT_STRING = @$"
 1
 00:00:00,000 --> 00:00:01,500
