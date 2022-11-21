@@ -94,8 +94,8 @@ namespace PostProductionScript.Managers
     {
       Regex pattern = new Regex(srtContentRegexPattern);
       Match match = pattern.Match(srtSubstring);
-      string timecodeInStr = Timecode.ConvertSrtTimecodeToTimecode(match.Groups["TimecodeIn"].Value, framerate);
-      string timecodeOutStr = Timecode.ConvertSrtTimecodeToTimecode(match.Groups["TimecodeOut"].Value, framerate);
+      string timecodeInStr = Timecode.ConvertSubtitleTimecodeToSMPTETimecode(match.Groups["TimecodeIn"].Value, framerate);
+      string timecodeOutStr = Timecode.ConvertSubtitleTimecodeToSMPTETimecode(match.Groups["TimecodeOut"].Value, framerate);
       timecodeIn = new Timecode(timecodeInStr, framerate);
       timecodeOut = new Timecode(timecodeOutStr, framerate);
       lineNumber = int.Parse(match.Groups["Linenumber"].Value);
@@ -127,9 +127,9 @@ namespace PostProductionScript.Managers
       for (int i = 0; i < script.Lines.Count; i++)
       {
         result += script.Lines.ElementAt(i).LineNumber + "\n" +
-           script.Lines.ElementAt(i).TimecodeIn?.ToString() + " --> " +
-           script.Lines.ElementAt(i).TimecodeOut?.ToString() + "\n" +
-           script.Lines.ElementAt(i).Body + "\n" + "\n";
+           script.Lines.ElementAt(i).TimecodeIn?.ToSubtitleString() + " --> " +
+           script.Lines.ElementAt(i).TimecodeOut?.ToSubtitleString() + "\n" +
+           script.Lines.ElementAt(i).Body + "\n\n";
       }
       return result;
     }

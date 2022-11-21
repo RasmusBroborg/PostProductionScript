@@ -15,6 +15,17 @@ namespace PostProductionScript_Test.Managers
 {
   public class SubtitleManager_Test
   {
+    public static readonly string EXAMPLE_SRT_STRING2 = @$"
+1
+00:00:00,000 --> 00:00:01,500
+Lorem ipsum dolor sit amet,
+consectetur adipiscing elit.
+
+2
+00:00:01,000 --> 00:00:02,500
+Sed do eiusmod tempor incididunt
+ut labore et dolore magna aliqua.
+";
     public static readonly string EXAMPLE_SRT_STRING = @$"
 1
 00:00:00,000 --> 00:00:01,500
@@ -124,26 +135,20 @@ natoque penatibus et magnis dis.");
     {
       //Arrange
       TimecodeScript script = new TimecodeScript();
+      string expectedResult = "1\n00:00:00,000 --> 00:00:01,500\nLorem ipsum dolor sit amet,\nconsectetur adipiscing elit.\n\n2\n00:00:01,000 --> 00:00:02,500\nSed do eiusmod tempor incididunt\nut labore et dolore magna aliqua.\n\n";
 
       script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 0, 0, Framerate.fps24),
-      new Timecode(0, 0, 1, 5, Framerate.fps24), "Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit."), 1);
+      new Timecode(0, 0, 1, 12, Framerate.fps24), "Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit."), 1);
       script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 1, 0, Framerate.fps24),
-new Timecode(0, 0, 2, 5, Framerate.fps24), "Sed do eiusmod tempor incididunt\nut labore et dolore magna aliqua."), 2);
-      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 2, 0, Framerate.fps24),
-new Timecode(0, 0, 3, 5, Framerate.fps24), "Justo donec enim diam vulputate."), 3);
-      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 3, 0, Framerate.fps24),
-new Timecode(0, 0, 4, 5, Framerate.fps24), "Id cursus metus aliquam eleifend\nmi in nulla."), 4);
-      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 4, 0, Framerate.fps24),
-new Timecode(0, 0, 5, 5, Framerate.fps24), "Ornare aenean euismod elementum nisi.\nSit amet mattis vulputate enim."), 5);
-      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 5, 0, Framerate.fps24),
-new Timecode(0, 0, 6, 5, Framerate.fps24), "Fermentum dui faucibus in ornare quam\nviverra. Elit eget gravida cum sociis" +
-"\nnatoque penatibus et magnis dis."), 6);
+new Timecode(0, 0, 2, 12, Framerate.fps24), "Sed do eiusmod tempor incididunt\nut labore et dolore magna aliqua."), 2);
+
 
       //Act
       string result = SubtitleManager.GenerateSrtText(script);
 
       //Assert
-      result.Should().Be(EXAMPLE_SRT_STRING);
+      result.Should().Be(expectedResult);
+
     }
   }
 }
