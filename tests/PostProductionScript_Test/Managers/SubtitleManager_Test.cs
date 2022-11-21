@@ -1,11 +1,15 @@
 ﻿using System.Linq;
 using PostProductionScript.Managers;
 using DotnetTimecode.Enums;
+using PostProductionScript.Models.ScriptModels;
 
 using Xunit;
 using FluentAssertions;
 using System.Text;
 using System.IO;
+using PostProductionScript.Interfaces.ScriptLines;
+using PostProductionScript.Models.LineModels;
+using DotnetTimecode;
 
 namespace PostProductionScript_Test.Managers
 {
@@ -55,7 +59,6 @@ natoque penatibus et magnis dis.
 
       // Assert
       result.Lines.Count().Should().Be(6);
-
       for (int i = 0; i < result.Lines.Count(); i++)
       {
         result.Lines.ElementAt(i).LineNumber.Should().Be(i + 1);
@@ -115,6 +118,26 @@ Sit amet mattis vulputate enim.");
 @"Fermentum dui faucibus in ornare quam
 viverra. Elit eget gravida cum sociis
 natoque penatibus et magnis dis.");
+    }
+    [Fact]
+    public void GenerateSrtText_ValidInput_Successful()
+    {
+      //Arrange
+      TimecodeScript script = new TimecodeScript();
+      string expectedResult = "1\n00:00:00,000 --> 00:00:01,500\nLorem ipsum dolor sit amet,\nconsectetur adipiscing elit.\n\n2\n00:00:01,000 --> 00:00:02,500\nSed do eiusmod tempor incididunt\nut labore et dolore magna aliqua.\n\n";
+
+      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 0, 0, Framerate.fps24),
+      new Timecode(0, 0, 1, 12, Framerate.fps24), "Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit."), 1);
+      script.InsertLine(new OnScreenTextLine(new Timecode(0, 0, 1, 0, Framerate.fps24),
+new Timecode(0, 0, 2, 12, Framerate.fps24), "Sed do eiusmod tempor incididunt\nut labore et dolore magna aliqua."), 2);
+
+
+      //Act
+      string result = SubtitleManager.GenerateSrtText(script);
+
+      //Assert
+      result.Should().Be(expectedResult);
+
     }
   }
 }
