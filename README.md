@@ -1,9 +1,5 @@
 # What is PostProductionScript?
 
-PostProductionScript is a C# library for working with post-production film scripts.
-
-# How to get started
-
 PostProductionScript is currently in development and is not yet ready for public consumption. If you would like to contribute to the project, please see the contributions section.
 
 # Contributions
